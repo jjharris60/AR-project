@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class MovingCar : MonoBehaviour
 {
+    int tapCount = 0;
     bool startAnimation = false;
     public float speed = 5f; // speed of the car
     private AudioSource audioSource; // Reference to the audio source
-    // Start is called before the first frame update
+
     void Start()
     {
-        audioSource = GetComponent<AudioSource>(); // Returns the 'AudioSource' component attatched to the moving car prefab
+        audioSource = GetComponent<AudioSource>(); // Returns the 'AudioSource' component attached to the AR prefab
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (transform.position.z < 5f && startAnimation)
+        if (transform.position.z < 2f && startAnimation && tapCount == 2)
         {
-            transform.position += new Vector3(0, 0, 0.05f); 
+            transform.position += new Vector3(0, 0, 0.05f);
         }
-        
     }
-    public void moveCar()
+
+    public void OnTap()
     {
-        startAnimation = true;
-        audioSource.Play();
+        tapCount++;
+
+        if (tapCount == 2)
+        {
+            startAnimation = true;
+            audioSource.Play();
+        }
     }
 }

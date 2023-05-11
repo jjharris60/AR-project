@@ -544,9 +544,10 @@ struct AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299  : public AudioBeha
 };
 struct MovingCar_t5E4A3D5E338C3FCA944944A5009D5CDD18552A9C  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
-	bool ___startAnimation_5;
-	float ___speed_6;
-	AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* ___audioSource_7;
+	int32_t ___tapCount_5;
+	bool ___startAnimation_6;
+	float ___speed_7;
+	AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* ___audioSource_8;
 };
 struct ARTrackableManager_5_t58BCDA2A5956989C6A20CC1E41B0F6DBEED545B6  : public SubsystemLifecycleManager_3_tAE0BB0092EB47B81AA111C370381E3BA14C88DD3
 {
@@ -1654,8 +1655,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MovingCar_Start_mC1B64FBAE17CB8E2B060C09
 	{
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_0;
 		L_0 = Component_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m42DA4DEA19EB60D80CBED7413ADEB27FA033C77B(__this, Component_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m42DA4DEA19EB60D80CBED7413ADEB27FA033C77B_RuntimeMethod_var);
-		__this->___audioSource_7 = L_0;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___audioSource_7), (void*)L_0);
+		__this->___audioSource_8 = L_0;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___audioSource_8), (void*)L_0);
 		return;
 	}
 }
@@ -1668,53 +1669,73 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MovingCar_Update_mD71BB88D4A11B81ABE190A
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_1;
 		L_1 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_0, NULL);
 		float L_2 = L_1.___z_4;
-		if ((!(((float)L_2) < ((float)(5.0f)))))
+		if ((!(((float)L_2) < ((float)(2.0f)))))
 		{
-			goto IL_0049;
+			goto IL_0052;
 		}
 	}
 	{
-		bool L_3 = __this->___startAnimation_5;
+		bool L_3 = __this->___startAnimation_6;
 		if (!L_3)
 		{
-			goto IL_0049;
+			goto IL_0052;
 		}
 	}
 	{
-		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_4;
-		L_4 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
-		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_5 = L_4;
-		NullCheck(L_5);
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_6;
-		L_6 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_5, NULL);
+		int32_t L_4 = __this->___tapCount_5;
+		if ((!(((uint32_t)L_4) == ((uint32_t)2))))
+		{
+			goto IL_0052;
+		}
+	}
+	{
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_5;
+		L_5 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_6 = L_5;
+		NullCheck(L_6);
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_7;
-		memset((&L_7), 0, sizeof(L_7));
-		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_7), (0.0f), (0.0f), (0.0500000007f), NULL);
+		L_7 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_6, NULL);
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_8;
-		L_8 = Vector3_op_Addition_m78C0EC70CB66E8DCAC225743D82B268DAEE92067_inline(L_6, L_7, NULL);
-		NullCheck(L_5);
-		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_5, L_8, NULL);
+		memset((&L_8), 0, sizeof(L_8));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_8), (0.0f), (0.0f), (0.0500000007f), NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_9;
+		L_9 = Vector3_op_Addition_m78C0EC70CB66E8DCAC225743D82B268DAEE92067_inline(L_7, L_8, NULL);
+		NullCheck(L_6);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_6, L_9, NULL);
 	}
 
-IL_0049:
+IL_0052:
 	{
 		return;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MovingCar_moveCar_m3AA1AA9B8884F94FD2F01CB3AA422D6248204A38 (MovingCar_t5E4A3D5E338C3FCA944944A5009D5CDD18552A9C* __this, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MovingCar_OnTap_m1467509E0F21BC439B8CB3DEC98733E12E6AEDFD (MovingCar_t5E4A3D5E338C3FCA944944A5009D5CDD18552A9C* __this, const RuntimeMethod* method) 
 {
 	{
-		__this->___startAnimation_5 = (bool)1;
-		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_0 = __this->___audioSource_7;
-		NullCheck(L_0);
-		AudioSource_Play_m95DF07111C61D0E0F00257A00384D31531D590C3(L_0, NULL);
+		int32_t L_0 = __this->___tapCount_5;
+		__this->___tapCount_5 = ((int32_t)il2cpp_codegen_add(L_0, 1));
+		int32_t L_1 = __this->___tapCount_5;
+		if ((!(((uint32_t)L_1) == ((uint32_t)2))))
+		{
+			goto IL_0029;
+		}
+	}
+	{
+		__this->___startAnimation_6 = (bool)1;
+		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_2 = __this->___audioSource_8;
+		NullCheck(L_2);
+		AudioSource_Play_m95DF07111C61D0E0F00257A00384D31531D590C3(L_2, NULL);
+	}
+
+IL_0029:
+	{
 		return;
 	}
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MovingCar__ctor_mD964E3FA5A1BA4FD27083F5A7E522EC83C2FD590 (MovingCar_t5E4A3D5E338C3FCA944944A5009D5CDD18552A9C* __this, const RuntimeMethod* method) 
 {
 	{
-		__this->___speed_6 = (5.0f);
+		__this->___speed_7 = (5.0f);
 		MonoBehaviour__ctor_m592DB0105CA0BC97AA1C5F4AD27B12D68A3B7C1E(__this, NULL);
 		return;
 	}
