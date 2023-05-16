@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingCar : MonoBehaviour
 {
     bool startAnimation = false;
-    public float speed = 5f; // speed of the car
+    public float speed = 0.009f; // speed of the car
     private AudioSource audioSource; // Reference to the audio source
 
     void Start()
@@ -17,7 +17,7 @@ public class MovingCar : MonoBehaviour
     {
         if (transform.position.z < 2f && startAnimation)
         {
-            transform.position += new Vector3(0, 0, 0.05f);
+            transform.position += new Vector3(0, 0, 0.08f);
         }
     }
 
