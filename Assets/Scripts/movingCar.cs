@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MovingCar : MonoBehaviour
 {
-    int tapCount = 0;
     bool startAnimation = false;
     public float speed = 5f; // speed of the car
     private AudioSource audioSource; // Reference to the audio source
@@ -16,20 +15,15 @@ public class MovingCar : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.z < 2f && startAnimation && tapCount == 2)
+        if (transform.position.z < 2f && startAnimation)
         {
             transform.position += new Vector3(0, 0, 0.05f);
         }
     }
 
-    public void OnTap()
+    public void moveCar()
     {
-        tapCount++;
-
-        if (tapCount == 2)
-        {
-            startAnimation = true;
-            audioSource.Play();
-        }
+       startAnimation = true;
+       audioSource.Play();
     }
 }
